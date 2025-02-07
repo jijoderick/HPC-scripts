@@ -35,13 +35,7 @@ Get-Service sshd
 ```
 netstat -an | findstr :22
 ```
-
-## If nothing appears, SSH is not listening on port 22.  Solution: Restart SSHD:
-
-```
-Restart-Service sshd
-```
-# Verify Firewall Rules Again  
+# Correct Firewall Rules   
 Even though SSH is listening, your Windows Firewall might still be blocking external SSH connections.  
 Run the following to check firewall rules:
 
@@ -49,5 +43,12 @@ Run the following to check firewall rules:
 New-NetFirewallRule -Name sshd -DisplayName "OpenSSH Server" -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 
 ```
+
+## If nothing appears, SSH is not listening on port 22.  Solution: Restart SSHD:
+
+```
+Restart-Service sshd
+```
+
 
 
