@@ -3,34 +3,34 @@
 
 Try the following in powershell (run as administrator)
 
-## Run the following command check available OpenSSH features
+Run the following command check available OpenSSH features
 ```
 Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
 ```
 
-## Install OpenSSH Client
+ Install OpenSSH Client
 ```
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0 
 ```
 
-## Install OpenSSH Server (if needed):
+Install OpenSSH Server (if needed):
 ```
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 ```
 
 
-## Start SSH Service (if server is installed)
+Start SSH Service (if server is installed)
 ```
 Start-Service sshd
 ```
 
-## Checking the status of OpenSSH
+Checking the status of OpenSSH
 ```
 Get-Service sshd
 ```
 
 # Setting up the new firewall rule
-## Check If SSH is Listening on Port 22
+Check If SSH is Listening on Port 22
 
 ```
 netstat -an | findstr :22
@@ -44,7 +44,7 @@ New-NetFirewallRule -Name sshd -DisplayName "OpenSSH Server" -Enabled True -Dire
 
 ```
 
-## If nothing appears, SSH is not listening on port 22.  Solution: Restart SSHD:
+If nothing appears, SSH is not listening on port 22.  Solution: Restart SSHD:
 
 ```
 Restart-Service sshd
